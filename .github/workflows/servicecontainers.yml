@@ -40,6 +40,41 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: ${{ env.mysqlpassword }}
         ports:
-        - ${{ format('{0}:3306', env.mysql-host-port) }}
+        - 3306:3306
+      database2:
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ env.mysqlpassword }}
+      database3:
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ env.mysqlpassword }}
+      database4:
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ env.mysqlpassword }}
+      database5:
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ env.mysqlpassword }}
+      database6:
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ env.mysqlpassword }}
+      database7:
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ env.mysqlpassword }}
+      database8:
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ env.mysqlpassword }}
+      database9:
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ env.mysqlpassword }}
+      database10:
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ env.mysqlpassword }}
 
-      
