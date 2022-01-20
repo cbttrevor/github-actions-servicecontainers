@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
 
 env:
+  mysql-host-port: 3306
   mysqlpassword: hereisarandompassword
   create-database: CREATE DATABASE IF NOT EXISTS cbtnuggets;
   create-table: CREATE TABLE IF NOT EXISTS cbtnuggets.people (firstName varchar(30), lastName varchar(30));
@@ -12,6 +13,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2.4.0
+    - name: Wait for Service Container to start
+      shell: pwsh
+      run: |
+        $TcpClient = [System.Net.Sockets.TcpClient]::new()
+        while ($true) {
+          try {
+            $TcpClient.Connect('127.0.0.1', ${{ env.mysql-host-port }})
+            Write-Host -Object 'MySQL is up and running. Moving to next step ...'
+            break
+          }
+          catch {
+            Write-Host -Object 'Waiting for service container to start'
+            Start-Sleep -Seconds 2
+          }
+        }
     - name: Connect to MySQL - Create database
       run: mysql --host=127.0.0.1 --password=${{ env.mysqlpassword }} --database=mysql --execute '${{ env.create-database }}'
     - name: Connect to MySQL - Create table
@@ -22,6 +38,6 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: ${{ env.mysqlpassword }}
         ports:
-        - 3306:3306
+        - ${{ env.mysql-host-port }}:3306
 
       
