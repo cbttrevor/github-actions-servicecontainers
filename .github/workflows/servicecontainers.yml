@@ -7,6 +7,7 @@ env:
   mysqlpassword: hereisarandompassword
   create-database: CREATE DATABASE IF NOT EXISTS cbtnuggets;
   create-table: CREATE TABLE IF NOT EXISTS cbtnuggets.people (firstName varchar(30), lastName varchar(30));
+  mysql-user: root
 
 jobs:
   svc-container:
@@ -30,15 +31,15 @@ jobs:
           }
         }
     - name: Connect to MySQL - Create database
-      run: mysql --host=127.0.0.1 --password=${{ env.mysqlpassword }} --database=mysql --execute '${{ env.create-database }}'
+      run: mysql --host=127.0.0.1 --password=${{ env.mysqlpassword }} --user=${{ env.mysql-user }} --database=mysql --execute '${{ env.create-database }}'
     - name: Connect to MySQL - Create table
-      run: mysql --host=127.0.0.1 --password=${{ env.mysqlpassword }} --database=mysql --execute '${{ env.create-table }}'
+      run: mysql --host=127.0.0.1 --password=${{ env.mysqlpassword }} --user=${{ env.mysql-user }} --database=mysql --execute '${{ env.create-table }}'
     services:
       database:
         image: mysql
         env:
           MYSQL_ROOT_PASSWORD: ${{ env.mysqlpassword }}
         ports:
-        - 3306:3306
+        - ${{ format('{0}:3306', $env.mysql-host-port) }}
 
       
