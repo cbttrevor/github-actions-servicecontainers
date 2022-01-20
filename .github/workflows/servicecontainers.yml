@@ -21,7 +21,7 @@ jobs:
           try {
             $TcpClient.Connect('127.0.0.1', ${{ env.mysql-host-port }})
             Write-Host -Object 'MySQL is up and running. Moving to next step ...'
-            Start-Sleep -Seconds 10
+            Start-Sleep -Seconds 15
             break
           }
           catch {
