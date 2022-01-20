@@ -22,7 +22,7 @@ jobs:
           try {
             $TcpClient.Connect('127.0.0.1', ${{ env.mysql-host-port }})
             Write-Host -Object 'MySQL is up and running. Moving to next step ...'
-            Start-Sleep -Seconds 15
+            Start-Sleep -Seconds 45
             break
           }
           catch {
@@ -74,6 +74,34 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: ${{ env.mysqlpassword }}
       database10:
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ env.mysqlpassword }}
+      database11:
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ env.mysqlpassword }}
+      database12:
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ env.mysqlpassword }}
+      database13:
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ env.mysqlpassword }}
+      database14:
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ env.mysqlpassword }}
+      database15:
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ env.mysqlpassword }}
+      database16:
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ env.mysqlpassword }}
+      database17:
         image: mysql
         env:
           MYSQL_ROOT_PASSWORD: ${{ env.mysqlpassword }}
