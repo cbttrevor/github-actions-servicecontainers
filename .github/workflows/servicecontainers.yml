@@ -40,6 +40,6 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: ${{ env.mysqlpassword }}
         ports:
-        - ${{ format('{0}:3306', ${{ env.mysql-host-port }}) }}
+        - ${{ format('{0}:3306', '${{ env.mysql-host-port' }}) }}
 
       
